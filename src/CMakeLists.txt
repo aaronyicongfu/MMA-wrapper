@@ -1,7 +1,12 @@
-add_library(mma MMA.cc)
+add_library(MMA MMA.cc)
+target_include_directories(MMA PUBLIC ${MMA_INCLUDE_PATH} ${MPI_INCLUDE_PATH} ${PETSC_INCLUDE_PATH})
+target_link_directories(MMA PUBLIC ${PETSC_LIB_PATH})
+target_link_libraries(MMA PUBLIC MPI::MPI_CXX petsc)
 
-target_include_directories(mma PUBLIC ${MMA_INCLUDE_PATH} ${MPI_INCLUDE_PATH} ${PETSC_INCLUDE_PATH})
-target_link_directories(mma PUBLIC ${PETSC_LIB_PATH})
-target_link_libraries(mma PUBLIC MPI::MPI_CXX petsc)
+add_library(optimizer optimizer.cpp)
+target_include_directories(optimizer PUBLIC ${MMA_INCLUDE_PATH} ${MPI_INCLUDE_PATH} ${PETSC_INCLUDE_PATH})
+target_link_directories(optimizer PUBLIC ${PETSC_LIB_PATH})
+target_link_libraries(optimizer PUBLIC MPI::MPI_CXX petsc)
 
-install(TARGETS mma DESTINATION ${MMA_LIB_PATH})
+install(TARGETS MMA DESTINATION ${MMA_LIB_PATH})
+install(TARGETS optimizer DESTINATION ${MMA_LIB_PATH})

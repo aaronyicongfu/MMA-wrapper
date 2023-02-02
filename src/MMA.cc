@@ -1,4 +1,3 @@
-
 #include "MMA.h"
 
 #include <math.h>

@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 project(MMA LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+
+
 find_package(MPI REQUIRED)
 
 # Path variables
