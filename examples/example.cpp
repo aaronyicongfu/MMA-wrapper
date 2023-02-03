@@ -6,8 +6,7 @@ class ToyProblem : public OptProblem {
   ToyProblem(MPI_Comm comm, int nvars, int nvars_l)
       : OptProblem(comm, nvars, nvars_l, 1) {}
 
-  PetscErrorCode evalObjCon(const double* xvals, PetscScalar* obj,
-                            PetscScalar* cons) {
+  int evalObjCon(const double* xvals, PetscScalar* obj, PetscScalar* cons) {
     // Zero-out values
     *obj = 0.0;
     for (int i = 0; i < ncons; i++) {
@@ -36,8 +35,7 @@ class ToyProblem : public OptProblem {
     return 0;
   }
 
-  PetscErrorCode evalObjConGrad(const double* xvals, double* gvals,
-                                double** gconvals) {
+  int evalObjConGrad(const double* xvals, double* gvals, double** gconvals) {
     // evaluate objective and constraint gradients
     for (int i = 0; i < nvars_l; i++) {
       gvals[i] = 2.0 * xvals[i];

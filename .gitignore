@@ -1,5 +1,6 @@
 lib/*
 build/*
 .vscode
+*.so
 
 !lib/.gitkeep
